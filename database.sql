@@ -27,7 +27,7 @@ CREATE TABLE `champions`  (
   `id` int(148) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
   `role` varchar(10) NOT NULL,
-  `class` varchar(5) NOT NULL,
+  `class` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
 )ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

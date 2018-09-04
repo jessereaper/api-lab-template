@@ -18,13 +18,14 @@ class App{
 
     $container = $app->getContainer();
     $container['db'] = $db;
-
+    //loggs
     $container['logger'] = function($c) {
         $logger = new \Monolog\Logger('my_logger');
         $file_handler = new \Monolog\Handler\StreamHandler('./logs/app.log');
         $logger->pushHandler($file_handler);
         return $logger;
     };
+    //creates new log file in the directory and loggs entries
 
     // $app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
     //     $name = $args['name'];
@@ -34,6 +35,7 @@ class App{
     //     return $response;
     // });
 
+    //gets hole databse when u search for champions
     $app->get('/champions', function (Request $request, Response $res){
       $this->logger->addInfo("get /champions");
       $champions = $this->db->query('SELECT * from champions')->fetchAll();
@@ -43,9 +45,12 @@ class App{
     // go to http://192.168.33.10/champions ^
     $app->get('/champions/{id}', function (Request $request, Response $response, array $args) {
       $id = $args['id'];
+      //makes the id into a $id (idk the technical terms)
       $this->logger->addInfo("get /champions".$id);
+      //loggs
       $champions = $this->db->query('SELECT * from champions where id ='.$id)->fetch();
-
+      //goes to db and fetches the champion by id
+      //if else statment in case of failure
       if($champions){
         $response = $response->withJson($champions);
       } else {
@@ -53,6 +58,7 @@ class App{
         $response = $response->withJson($errorData, 404);
       }
       return $response;
+      //returns champion you search for with an id
       // go to http://192.168.33.10/champions/1 ext
     });
     // $app->put('/champions/{id}', function (Request $request, Response $response, array $args){
@@ -109,14 +115,19 @@ class App{
     });
     $app->delete('/chmapions/{id}', function (Request $request, Response $response, array $args) {
       $id = $args['id'];
+      //changes id to $id
       $this->logger->addInfo("DELETE /champions/".$id);
+      //loggs the deletion
       $deleteSuccessful = $this->db->exec('DELETE FROM champions where id='.$id);
+      //looks though db to find the champion and deletes from that part
       if($deleteSuccessful){
         $response = $response->withStatus(200);
+        //on success
       } else {
         $errorData = array('status' => 404, 'message' => 'not found');
         $response = $response->withJson($errorData, 404);
       }
+      //on error
       return $response;
     });
 

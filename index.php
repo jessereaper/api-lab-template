@@ -1,5 +1,6 @@
 <?php
 require './vendor/autoload.php';
+//DB
 $db = function ($c) {
     $db = $c['settings']['db'];
     $pdo = new PDO('mysql:host=' . $db['host'] . ';dbname=' . $db['dbname'],
@@ -8,5 +9,7 @@ $db = function ($c) {
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     return $pdo;
 };
+//this is the name space
 $app = (new jess\champions\App($db))->get();
+//this runs the app xD
 $app->run();

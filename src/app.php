@@ -34,12 +34,13 @@ class App{
     //     return $response;
     // });
 
-    $app->get('/champions', function (Request $request, Response $response){
-      $this->logger->addInfo("get /champions'");
+    $app->get('/champions', function (Request $request, Response $res){
+      $this->logger->addInfo("get /champions");
       $champions = $this->db->query('SELECT * from champions')->fetchAll();
-      $jsonResponse - $response->withJson($champion);
-      return $jsonResponse;
+      $jsonRes = $res->withJson($champions);
+      return $jsonRes;
     });
+    // go to http://192.168.33.10/champions ^
     $app->get('/champions/{id}', function (Request $request, Response $response, array $args) {
       $id = $args['id'];
       $this->logger->addInfo("get /champions".$id);
@@ -52,7 +53,7 @@ class App{
         $response = $response->withJson($errorData, 404);
       }
       return $response;
-
+      // go to http://192.168.33.10/champions/1 ext
     });
     // $app->put('/champions/{id}', function (Request $request, Response $response, array $args){
     //   $id = $args['id'];
@@ -69,7 +70,7 @@ class App{
     // });
     $app->put('/champions/{id}', function (Request $request, Response $response, array $args) {
         $id = $args['id'];
-        $this->logger->addInfo("PUT /people/".$id);
+        $this->logger->addInfo("PUT /champions/".$id);
 
         // check that peron exists
         $champions = $this->db->query('SELECT * from champions where id='.$id)->fetchAll();
@@ -102,7 +103,7 @@ class App{
         }
         // return updated record
         $champions = $this->db->query('SELECT * from champions where id='.$id)->fetch();
-        $jsonResponse = $response->withJson($person);
+        $jsonResponse = $response->withJson($champions);
 
         return $jsonResponse;
     });

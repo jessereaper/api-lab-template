@@ -50,8 +50,8 @@ class App
          $tableRows = $tableRows . "<tr>";
          $tableRows = $tableRows . "<td>".$champions["name"]."</td><td>".$champions["role"]."</td><td>".$champions["class"]."</td>";
          $tableRows = $tableRows . "<td>
-         <a href='http://localhost:8080/da_ap/champions/".$champions["id"]."' class='btn btn-primary'>View Details</a>
-         <a href='http://localhost:8080/da_ap/champions/".$champions["id"]."/edit' class='btn btn-secondary'>Edit</a>
+         <a href='http://localhost:8081/da_ap/champions/".$champions["id"]."' class='btn btn-primary'>View Details</a>
+         <a href='http://localhost:8081/da_ap/champions/".$champions["id"]."/edit' class='btn btn-secondary'>Edit</a>
          <a data-id='".$champions["id"]."' class='btn btn-danger deletebtn'>Delete</a>
 
          </td>";
@@ -88,7 +88,7 @@ class App
          $templateVariables = [
            "type" => "edit",
            "title" => "Edit a existing champion",
-           "person" => $responseRecord
+           "champion" => $responseRecord
          ];
          return $this->renderer->render($response, "/championsEditForm.html", $templateVariables);
 

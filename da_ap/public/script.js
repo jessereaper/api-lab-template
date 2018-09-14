@@ -4,7 +4,7 @@ $(document).ready(function() {
     event.preventDefault();
     $.ajax({
       type: "POST",
-      url: "http://localhost:8081/api/champions/",
+      url: "http://localhost:8081/api/champions",
       data: form.serialize(), // serializes the form's elements.
       success: function(data) {
         window.location.replace("http://localhost:8081/da_ap/champions");
@@ -16,10 +16,10 @@ $(document).ready(function() {
     event.preventDefault();
     $.ajax({
       type: "POST",
-      url: "http://localhost:8081/api/champions",
+      url: "http://localhost:8081/api/champions/" + id,
       data: form.serialize(), // serializes the form's elements.
       success: function(data) {
-        window.location.replace("http://localhost:8081/da_ap");
+        window.location.replace("http://localhost:8081/da_ap/champions");
       }
     });
   });
@@ -28,7 +28,7 @@ $(document).ready(function() {
       var id = $(this).attr("data-id");
       $.ajax({
         type: "DELETE",
-        url: "http://localhost:8081/api/champions" + id,
+        url: "http://localhost:8081/api/champions/" + id,
         contentType: "application/json",
         success: function() {
           alert("deleted successful?."),

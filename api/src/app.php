@@ -104,13 +104,13 @@ class App{
         $fieldNames = $fieldNames . ') VALUES ';
         $createString = $createString . $fieldNames . $values . ";";
         // execute query
-        try {
+        // try {
           $this->db->exec($createString);
-        } catch (\PDOException $e) {
-          var_dump($e);
-          $errorData = array('status' => 400, 'message' => 'Invalid data provided to create this champion');
-          return $response->withJson($errorData, 400);
-        }
+        // } catch (\PDOException $e) {
+        //   var_dump($e);
+        //   $errorData = array('status' => 400, 'message' => 'Invalid data provided to create this champion');
+        //   return $response->withJson($errorData, 400);
+        // }
         // return updated record
         $champions = $this->db->query('SELECT * from champions ORDER BY id desc LIMIT 1')->fetch();
         $jsonResponse = $response->withJson($champions);
@@ -157,7 +157,7 @@ class App{
 
         return $jsonResponse;
     });
-    $app->delete('/chmapions/{id}', function (Request $request, Response $response, array $args) {
+    $app->delete('/champions/{id}', function (Request $request, Response $response, array $args) {
       $id = $args['id'];
       //changes id to $id
       $this->logger->addInfo("DELETE /champions/".$id);

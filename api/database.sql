@@ -18,6 +18,7 @@
 --
 -- Table structure for table `champions`
 --
+DROP DATABASE championdb;
 CREATE DATABASE championdb;
 USE championdb;
 DROP TABLE IF EXISTS `champions`;
@@ -26,7 +27,7 @@ DROP TABLE IF EXISTS `champions`;
 CREATE TABLE `champions`  (
   `id` int(148) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
-  `role` varchar(10) NOT NULL,
+  `role` varchar(20) NOT NULL,
   `class` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
 )ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;

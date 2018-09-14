@@ -1,20 +1,20 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 </head>
-<script src="../public/script.js"></script>
+<script src="http://localhost:8081/da_ap/public/script.js"></script>
 
 <form id='championsForm'>
   <div class="form-group">
     <label for="name">Name</label>
-    <input name="name" type="text" class="form-control" id="name" placeholder="Enter name">
+    <input name="name" type="text" class="form-control" id="name" placeholder="Enter name" value="<?php echo ($champion['name']);?>">
   </div>
   <div class="form-group">
     <label for="role">role</label>
-    <input name="role" type="text" class="form-control" id="role" placeholder="Enter role">
+    <input name="role" type="text" class="form-control" id="role" placeholder="Enter role" value="<?php echo ($champion['role']);?>">
   </div>
   <div class="form-group">
     <label for="class">class</label>
-    <input name="class" type="text" class="form-control" id="class" placeholder="Enter class">
+    <input name="class" type="text" class="form-control" id="class" placeholder="Enter class" value="<?php echo ($champion['class']);?>">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
